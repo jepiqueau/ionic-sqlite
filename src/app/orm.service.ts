@@ -67,8 +67,14 @@ export class OrmService {
       const newUser = new User();
       newUser.firstName = user.firstName;
       newUser.lastName = user.lastName;
-      await newUser.save();
+//      await newUser.save();
+        await this.entitySave(newUser, 'test');
     }
+  }
+
+  private async entitySave(entity: any, dbName: string) {
+    await entity.save();
+    await this.sqlite.saveToStore(dbName);
   }
 
   private async createConnection(): Promise<Connection> {
