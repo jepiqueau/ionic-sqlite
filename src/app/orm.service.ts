@@ -20,7 +20,11 @@ export class OrmService {
       await this.createConnection();
       console.log('Connection created!');
     }
-    //await this.createMockData();
+    await this.createMockData();
+    if( this.sqlite.platform === 'web') {
+      await this.sqlite.saveToStore('test');
+    }
+
     console.log('All users:', JSON.stringify(await User.find(), null, 2));
   }
 

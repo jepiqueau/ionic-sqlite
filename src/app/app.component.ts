@@ -9,7 +9,7 @@ import { SQLiteService } from './services/sqlite.service';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
-
+  public isWeb = false;
   constructor(private platform: Platform, private sqlite: SQLiteService, private ormService: OrmService) {
     this.initializeApp();
   }
@@ -17,7 +17,7 @@ export class AppComponent {
   initializeApp() {
     this.platform.ready().then(async () => {
       await this.ormService.initialize();
-      // await this.testDB();
+      //await this.testDB();
     });
   }
 
